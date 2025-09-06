@@ -253,6 +253,8 @@ def resolve_type(typedef):
     elif typedef['type'] == 'integer':
         if typedef['format'] == 'int32':
             return create_typedef(integer=True, is_basic=True)
+        if typedef['format'] == 'int64':
+            return create_typedef(integer=True, is_basic=True)
         else:
             raise ValueError(typedef['format'])
     elif typedef['type'] == 'number':
