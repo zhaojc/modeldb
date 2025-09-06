@@ -7,7 +7,7 @@ ADD protos/gen/go ./protos/gen/go
 ADD go.mod .
 ADD go.sum .
 COPY backend/proxy/proxy.go ./backend/proxy/proxy.go
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /proxy ./backend/proxy
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -o /proxy ./backend/proxy
 
 FROM scratch
 COPY --from=builder /proxy /app/bin/proxy
