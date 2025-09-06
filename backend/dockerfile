@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=adoptopenjdk/openjdk16:jdk-16_36-alpine
+ARG BASE_IMAGE=adoptopenjdk/openjdk16:jdk-16_36-ubuntu-slim
 FROM $BASE_IMAGE
 
 RUN mkdir -p modeldb-project-work-dir
