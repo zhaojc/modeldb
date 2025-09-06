@@ -9,7 +9,7 @@ RUN apt-get update && \
       software-properties-common \
       unzip
 
-RUN curl -o /tmp/go.tgz https://dl.google.com/go/go1.14.linux-amd64.tar.gz && \
+RUN curl -o /tmp/go.tgz https://dl.google.com/go/go1.14.linux-arm64.tar.gz && \
     tar -xvzf /tmp/go.tgz -C /tmp && \
     mv /tmp/go /usr/local && \
     rm -rf /tmp/go*
@@ -27,16 +27,17 @@ ENV PATH $GOPATH/bin:$GOROOT/bin:$PATH
 #     rm -f $PROTOC_ZIP
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends git
+    apt-get install -y --no-install-recommends git build-essential python3-dev
+
 
 COPY get_dependencies.sh get_dependencies.sh
 RUN ./get_dependencies.sh
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends python3-pip python3-setuptools
+    apt-get install -y --no-install-recommends  python3-pip python3-setuptools
 
-# RUN pip3 install protobuf==3.11.3
-RUN pip3 install grpcio-tools==1.27.2 grpcio==1.27.2
+RUN pip3 install protobuf==3.11.3
+RUN pip3 install  grpcio==1.27.2 grpcio-tools==1.27.2
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends jq
